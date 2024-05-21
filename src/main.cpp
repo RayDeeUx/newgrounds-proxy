@@ -18,14 +18,17 @@ class $modify(ProxyLevelInfoLayer, LevelInfoLayer) {
 				Notification::create(
 					std::string("Newgrounds Proxy OK"), 
 					CCSprite::createWithSpriteFrameName("GJ_completesIcon_001.png")
-				)->show();*/
+				)->show();
+				*/
 			})
 			.expect([](std::string const& error) {
 				log::error("Proxy ERROR: {}", error);
-				Notification::create(
-					std::string("Newgrounds Proxy Error: ") + error, 
-					CCSprite::createWithSpriteFrameName("GJ_deleteIcon_001.png")
-				)->show();
+				if (!GJBaseGameLayer::get()) {
+					Notification::create(
+						std::string("Newgrounds Proxy Error: ") + error,
+						CCSprite::createWithSpriteFrameName("GJ_deleteIcon_001.png")
+					)->show();
+				}
 			});
 
 		return true;
