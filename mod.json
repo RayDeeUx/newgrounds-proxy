@@ -1,13 +1,21 @@
 {
 	"geode": "2.0.0-beta.26",
-	"version": "v1.0.4",
+	"version": "v1.0.5",
 	"id": "relative.newgrounds_proxy",
 	"name": "Newgrounds Proxy",
 	"developer": "relative",
 	"description": "Tries to apply Cloudflare's cache while downloading songs from Newgrounds via self-hosted server.",
 	"gd": {
-		"android": "*",
-		"win": "2.204"
+		"win": "2.204",
+		"android": "2.205"
 	},
-	"repository": "https://github.com/relativemodder/newgrounds-proxy"
+	"repository": "https://github.com/relativemodder/newgrounds-proxy",
+	"settings": {
+		"notifications": {
+			"name": "Enable Notifications",
+			"description": "Toggles notifications for the proxy's status.\n\n<cy>Disabling this does not magically prevent the proxy from failing.</c>",
+			"type": "bool",
+			"default": true
+		}
+	}
 }

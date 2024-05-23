@@ -15,19 +15,23 @@ class $modify(ProxyLevelInfoLayer, LevelInfoLayer) {
 			.then([](std::string const& result) {
 				log::debug("Proxy OK");
 				/*
-				Notification::create(
-					std::string("Newgrounds Proxy OK"), 
-					CCSprite::createWithSpriteFrameName("GJ_completesIcon_001.png")
-				)->show();
+				if (Mod::get()->getSettingValue<bool>("notifications")) {
+					Notification::create(
+						std::string("Newgrounds Proxy OK"),
+						CCSprite::createWithSpriteFrameName("GJ_completesIcon_001.png")
+					)->show();
+				}
 				*/
 			})
 			.expect([](std::string const& error) {
 				log::error("Proxy ERROR: {}", error);
-				if (!GJBaseGameLayer::get()) {
-					Notification::create(
-						std::string("Newgrounds Proxy Error: ") + error,
-						CCSprite::createWithSpriteFrameName("GJ_deleteIcon_001.png")
-					)->show();
+				if (Mod::get()->getSettingValue<bool>("notifications")) {
+					if (!GJBaseGameLayer::get()) {
+						Notification::create(
+							std::string("Newgrounds Proxy Error: ") + error,
+							CCSprite::createWithSpriteFrameName("GJ_deleteIcon_001.png")
+						)->show();
+					}
 				}
 			});
 
